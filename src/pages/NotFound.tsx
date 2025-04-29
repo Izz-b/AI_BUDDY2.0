@@ -1,8 +1,13 @@
+
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import Monster from "../components/Monster";
 
 const NotFound = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.error(
@@ -12,13 +17,19 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-sprout-blue">
+      <Monster size="md" color="#8FE3A9" />
+      <div className="text-center mt-8">
+        <h1 className="text-4xl font-bold text-white mb-4">Oops!</h1>
+        <p className="text-xl text-white/80 mb-4">
+          We couldn't find the page you're looking for.
+        </p>
+        <Button 
+          onClick={() => navigate("/")}
+          className="bg-white text-sprout-blue hover:bg-white/90"
+        >
+          Go Back Home
+        </Button>
       </div>
     </div>
   );
