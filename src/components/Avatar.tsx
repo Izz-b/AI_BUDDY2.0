@@ -51,9 +51,9 @@ const Avatar = ({
   }, [showQuote, quote]);
 
   const sizes = {
-    sm: "w-32 h-32",
-    md: "w-48 h-48",
-    lg: "w-64 h-64",
+    sm: "w-24 h-24",
+    md: "w-32 h-32",
+    lg: "w-48 h-48",
   };
 
   const positions = {
@@ -91,43 +91,25 @@ const Avatar = ({
         </div>
       )}
 
-      {/* Friendly Robot Avatar */}
+      {/* Simple Smiling Avatar */}
       <div 
         className={cn("relative cursor-pointer", sizes[size])}
         onClick={handleAvatarClick}
       >
-        {/* Robot Head */}
-        <div className="absolute inset-0 bg-sprout-purple rounded-3xl shadow-lg overflow-hidden">
-          {/* Antenna */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3">
-            <div className="w-4 h-10 bg-gray-300 rounded-full"></div>
-            <div className="w-6 h-6 rounded-full bg-sprout-orange absolute -top-3 left-1/2 -translate-x-1/2 animate-pulse"></div>
-          </div>
-
-          {/* Face */}
-          <div className="absolute top-1/4 w-full flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-sprout-purple to-sprout-purple/90 rounded-full shadow-lg overflow-hidden animate-pulse">
+          {/* Simple Face */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
             {/* Eyes */}
-            <div className="flex gap-6">
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <div className="w-4 h-4 bg-black rounded-full animate-eye-blink"></div>
-              </div>
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <div className="w-4 h-4 bg-black rounded-full animate-eye-blink"></div>
-              </div>
+            <div className="flex gap-4 mb-1">
+              <div className="w-4 h-4 bg-white rounded-full"></div>
+              <div className="w-4 h-4 bg-white rounded-full"></div>
             </div>
+            {/* Smile */}
+            <div className="w-12 h-6 border-b-4 border-white rounded-full mt-1"></div>
           </div>
-
-          {/* Mouth */}
-          <div className="absolute bottom-1/4 w-full flex items-center justify-center">
-            <div className="w-16 h-4 bg-white rounded-full"></div>
-          </div>
-
-          {/* Control Panels */}
-          <div className="absolute bottom-6 w-full flex items-center justify-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-            <div className="w-3 h-3 rounded-full bg-blue-400"></div>
-          </div>
+          
+          {/* Glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 rounded-full"></div>
         </div>
       </div>
     </div>

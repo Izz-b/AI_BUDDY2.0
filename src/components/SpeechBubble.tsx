@@ -9,7 +9,7 @@ interface BubbleProps {
 export const Bubble = ({ children, className }: BubbleProps) => {
   return (
     <div className={cn(
-      "bg-white p-4 rounded-2xl shadow-md animate-fade-in border-2 border-sprout-purple/30",
+      "bg-white p-3 rounded-xl shadow-md animate-fade-in border-2 border-sprout-purple/30",
       className
     )}>
       {children}
@@ -26,8 +26,8 @@ export const BubbleTail = ({ position = "right", className }: BubbleTailProps) =
   return (
     <div
       className={cn(
-        "absolute bottom-0 w-4 h-4 transform rotate-45 bg-white border-b-2 border-r-2 border-sprout-purple/30 translate-y-1/2",
-        position === "right" ? "right-6" : "left-6",
+        "absolute bottom-0 w-3 h-3 transform rotate-45 bg-white border-b-2 border-r-2 border-sprout-purple/30 translate-y-1/2",
+        position === "right" ? "right-4" : "left-4",
         className
       )}
     />

@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
 import LessonPage from "./pages/LessonPage";
 import ParentPortal from "./pages/ParentPortal";
+import RoadmapPage from "./pages/RoadmapPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/roadmap" element={<RoadmapPage />} />
             <Route path="/lessons/:subjectId" element={<LessonPage />} />
             <Route path="/parent-portal" element={<ParentPortal />} />
           </Route>
