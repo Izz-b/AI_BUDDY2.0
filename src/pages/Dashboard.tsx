@@ -1,17 +1,15 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SubjectCard from "../components/SubjectCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Award, BookOpen, Clock, User, Map } from "lucide-react";
 import ConversationPanel from "../components/ConversationPanel";
-import FeatureCard from "../components/FeatureCard";
-import Avatar from "../components/Avatar";
+import DashboardHeader from "../components/dashboard/DashboardHeader";
+import FeatureCardsSection from "../components/dashboard/FeatureCardsSection";
+import LearnTabContent from "../components/dashboard/LearnTabContent";
+import ProgressTabContent from "../components/dashboard/ProgressTabContent";
+import RewardsTabContent from "../components/dashboard/RewardsTabContent";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("learn");
-  const navigate = useNavigate();
   
   const subjects = [
     {
@@ -42,19 +40,7 @@ const Dashboard = () => {
 
   return (
     <div className="relative">
-      {/* Avatar character */}
-      <Avatar position="right" size="md" />
-      
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800">Hello, Alex!</h1>
-          <p className="text-gray-600">Ready to continue your learning adventure?</p>
-        </div>
-        <div className="flex items-center gap-2 bg-sprout-yellow/20 px-4 py-2 rounded-full">
-          <Award className="h-5 w-5 text-amber-500" />
-          <span className="font-medium">250 points</span>
-        </div>
-      </div>
+      <DashboardHeader username="Alex" points={250} />
 
       {/* Conversation Panel */}
       <div className="mb-8">
@@ -62,29 +48,7 @@ const Dashboard = () => {
       </div>
 
       {/* Feature Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <FeatureCard
-          icon={<Award className="h-6 w-6 text-amber-500" />}
-          title="Badges & Achievements"
-          description="Collect awards for your progress"
-          bgColor="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-100"
-          onClick={() => setActiveTab("rewards")}
-        />
-        <FeatureCard
-          icon={<Map className="h-6 w-6 text-green-500" />}
-          title="Learning Roadmap"
-          description="See your journey and upcoming lessons"
-          bgColor="bg-gradient-to-br from-green-50 to-teal-50 border-green-100"
-          onClick={() => setActiveTab("progress")}
-        />
-        <FeatureCard
-          icon={<User className="h-6 w-6 text-blue-500" />}
-          title="Parent Portal"
-          description="Insights for parents and guardians"
-          bgColor="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-100"
-          onClick={() => navigate('/parent-portal')}
-        />
-      </div>
+      <FeatureCardsSection onTabChange={setActiveTab} />
 
       <Tabs defaultValue="learn" value={activeTab} onValueChange={setActiveTab} className="mb-6">
         <TabsList className="grid w-full grid-cols-3">
@@ -93,108 +57,13 @@ const Dashboard = () => {
           <TabsTrigger value="rewards">Rewards</TabsTrigger>
         </TabsList>
         <TabsContent value="learn">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {subjects.map((subject) => (
-              <SubjectCard
-                key={subject.id}
-                id={subject.id}
-                title={subject.title}
-                description={subject.description}
-                progress={subject.progress}
-                lessons={subject.lessons}
-                completed={subject.completed}
-              />
-            ))}
-          </div>
+          <LearnTabContent subjects={subjects} />
         </TabsContent>
         <TabsContent value="progress">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            <Card>
-              <CardHeader className="flex flex-row items-center space-x-4 pb-2">
-                <Clock className="h-5 w-5 text-sprout-blue" />
-                <CardTitle className="text-lg">Time Spent</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">5h 23m</div>
-                <p className="text-sm text-gray-500 mt-1">This week</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center space-x-4 pb-2">
-                <BookOpen className="h-5 w-5 text-sprout-purple" />
-                <CardTitle className="text-lg">Lessons Completed</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">13</div>
-                <p className="text-sm text-gray-500 mt-1">Out of 30 total</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center space-x-4 pb-2">
-                <Award className="h-5 w-5 text-amber-500" />
-                <CardTitle className="text-lg">Badges Earned</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">7</div>
-                <p className="text-sm text-gray-500 mt-1">Keep it up!</p>
-              </CardContent>
-            </Card>
-          </div>
+          <ProgressTabContent />
         </TabsContent>
         <TabsContent value="rewards">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-            <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-purple-100">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Award className="h-5 w-5 text-purple-500" />
-                  Reading Champion
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-4">
-                  <div className="w-20 h-20 bg-purple-100 rounded-full mx-auto flex items-center justify-center mb-2">
-                    <Award className="h-10 w-10 text-purple-500" />
-                  </div>
-                  <p className="text-sm text-gray-600">Complete 10 reading lessons</p>
-                  <div className="mt-3 text-xs text-gray-500">6/10 completed</div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-100">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Award className="h-5 w-5 text-blue-500" />
-                  Word Master
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-4">
-                  <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-2">
-                    <Award className="h-10 w-10 text-blue-500" />
-                  </div>
-                  <p className="text-sm text-gray-600">Learn 50 new words</p>
-                  <div className="mt-3 text-xs text-gray-500">32/50 completed</div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-gradient-to-br from-green-50 to-teal-50 border-green-100">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Award className="h-5 w-5 text-green-500" />
-                  Knowledge Explorer
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-4">
-                  <div className="w-20 h-20 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-2">
-                    <Award className="h-10 w-10 text-green-500" />
-                  </div>
-                  <p className="text-sm text-gray-600">Complete 5 knowledge quizzes</p>
-                  <div className="mt-3 text-xs text-gray-500">3/5 completed</div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <RewardsTabContent />
         </TabsContent>
       </Tabs>
     </div>
