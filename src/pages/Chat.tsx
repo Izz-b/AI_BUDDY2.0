@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -83,19 +82,35 @@ const Chat = () => {
     setInput("");
     setIsTyping(true);
 
-    // Simulate bot response
+    // Show typing animation with ellipsis before showing bot's response
     setTimeout(() => {
-      const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-      const botMessage: Message = {
+      const typingMessage: Message = {
         id: messages.length + 2,
-        text: randomResponse,
+        text: "...",
         sender: "assistant",
         timestamp: new Date(),
       };
 
-      setMessages((prev) => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1500);
+      setMessages((prev) => [...prev, typingMessage]);
+
+      // Simulate bot response after a short delay
+      setTimeout(() => {
+        const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
+        const botMessage: Message = {
+          id: messages.length + 3,
+          text: randomResponse,
+          sender: "assistant",
+          timestamp: new Date(),
+        };
+
+        setMessages((prev) => {
+          const updatedMessages = [...prev];
+          updatedMessages[updatedMessages.length - 1] = botMessage; // Replace ellipsis with real response
+          return updatedMessages;
+        });
+        setIsTyping(false);
+      }, 1000); // Delay before the bot response
+    }, 1500); // Delay before showing ellipsis
   };
 
   return (
@@ -129,7 +144,7 @@ const Chat = () => {
               )}
               
               <div className={`max-w-[70%] relative ${message.sender === "user" ? "order-1" : "order-2"}`}>
-                <Bubble className={message.sender === "user" ? "bg-sprout-green text-white" : ""}>
+                <Bubble className={`text-black ${message.sender === "user" ? "bg-sprout-green text-white" : ""}`}>
                   <p className="text-sm">{message.text}</p>
                 </Bubble>
                 <BubbleTail 
@@ -139,9 +154,9 @@ const Chat = () => {
               </div>
 
               {message.sender === "user" && (
-                <div className="flex items-end ml-2">
-                  <div className="w-10 h-10 bg-sprout-blue rounded-full flex-shrink-0 flex items-center justify-center">
-                    <span className="text-white font-bold">A</span>
+                <div className="flex items-end ml-2 fixed left-4 bottom-24">
+                  <div className="w-10 h-10 bg-sprout-blue rounded-full mr-2 flex-shrink-0 flex items-center justify-center">
+                    <div className="w-6 h-6 bg-white rounded-full"></div> {/* Smaller inner circle */}
                   </div>
                 </div>
               )}
@@ -167,13 +182,13 @@ const Chat = () => {
 
       <div className="pt-4 border-t">
         <form onSubmit={handleSendMessage} className="flex gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message..."
-            className="flex-1 px-4 py-2 rounded-full border-2 border-sprout-purple/20 focus:outline-none focus:border-sprout-purple"
-          />
+        <input
+  type="text"
+  value={input}
+  onChange={(e) => setInput(e.target.value)}
+  placeholder="Type a message..."
+  className="flex-1 px-4 py-2 rounded-full border-2 border-sprout-purple/20 focus:outline-none focus:border-sprout-purple text-black"
+/>
           <Button 
             type="submit"
             className="rounded-full bg-sprout-purple hover:bg-sprout-purple/90"
@@ -185,7 +200,7 @@ const Chat = () => {
       </div>
 
       {/* Fixed avatar at bottom right */}
-      <Avatar position="right" size="sm" showQuote={false} className="bottom-24" />
+      <Avatar position="right" size="xl" showQuote={false} className="bottom-24 fixed" />
     </div>
   );
 };

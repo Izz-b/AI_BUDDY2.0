@@ -1,7 +1,6 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Monster from "../components/Monster";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,7 +40,12 @@ const Register = () => {
     <div className="w-full max-w-md">
       <div className="flex flex-col items-center">
         <div className="flex justify-center -mb-12 z-10">
-          <Monster size="sm" animated={false} />
+          {/* Replace Monster with DotLottieReact for the avatar */}
+          <DotLottieReact
+            src="https://lottie.host/6b690dae-9060-45ee-ab04-8607f2bc0e07/ByqeJ9jphD.lottie"
+            loop
+            autoplay
+          />
         </div>
         
         <div className="w-full px-8 py-6 bg-white rounded-xl shadow-lg pt-16">

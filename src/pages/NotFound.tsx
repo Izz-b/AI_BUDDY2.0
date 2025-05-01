@@ -1,9 +1,8 @@
-
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import Monster from "../components/Monster";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'; // Import the avatar
 
 const NotFound = () => {
   const location = useLocation();
@@ -18,7 +17,12 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-sprout-blue">
-      <Monster size="md" color="#8FE3A9" />
+      <DotLottieReact
+        src="https://lottie.host/6b690dae-9060-45ee-ab04-8607f2bc0e07/ByqeJ9jphD.lottie"
+        loop
+        autoplay
+        className="w-48 h-48" // You can adjust the size here if needed
+      />
       <div className="text-center mt-8">
         <h1 className="text-4xl font-bold text-white mb-4">Oops!</h1>
         <p className="text-xl text-white/80 mb-4">

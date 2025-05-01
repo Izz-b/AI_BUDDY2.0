@@ -1,8 +1,7 @@
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Monster from "../components/Monster";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react"; // Import the DotLottieReact component
 
 const Index = () => {
   const navigate = useNavigate();
@@ -23,7 +22,13 @@ const Index = () => {
       <div className="absolute top-1/4 right-10 w-20 h-20 bg-sprout-yellow opacity-20 rounded-full"></div>
       <div className="absolute bottom-10 left-1/4 w-32 h-32 bg-sprout-purple opacity-20 rounded-full"></div>
       
-      <Monster animated={true} className="mb-8" />
+      {/* Replace Monster component with the DotLottieReact component */}
+      <DotLottieReact
+        src="https://lottie.host/6b690dae-9060-45ee-ab04-8607f2bc0e07/ByqeJ9jphD.lottie"
+        loop
+        autoplay
+        className="mb-8"
+      />
       
       <div className="text-center mb-8 z-10 px-4">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">

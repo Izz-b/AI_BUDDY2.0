@@ -1,6 +1,6 @@
 
 import { Award } from "lucide-react";
-import Avatar from "../Avatar";
+
 
 interface DashboardHeaderProps {
   username: string;
@@ -11,7 +11,7 @@ const DashboardHeader = ({ username, points }: DashboardHeaderProps) => {
   return (
     <>
       {/* Avatar character */}
-      <Avatar position="right" size="md" />
+      
       
       <div className="flex items-center justify-between mb-6">
         <div>

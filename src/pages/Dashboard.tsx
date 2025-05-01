@@ -40,7 +40,7 @@ const Dashboard = () => {
 
   return (
     <div className="relative">
-      <DashboardHeader username="Alex" points={250} />
+      <DashboardHeader username="Amir" points={250} />
 
       {/* Conversation Panel */}
       <div className="mb-8">

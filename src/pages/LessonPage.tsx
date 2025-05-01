@@ -1,4 +1,18 @@
+import React from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
+// Replace Monster component with the avatar component
+const Avatar = () => {
+  return (
+    <DotLottieReact
+      src="https://lottie.host/6b690dae-9060-45ee-ab04-8607f2bc0e07/ByqeJ9jphD.lottie"
+      loop
+      autoplay
+    />
+  );
+};
+
+// In your existing code, replace the Monster component with Avatar component
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import LessonCard from "../components/LessonCard";
@@ -7,7 +21,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import Monster from "../components/Monster";
 import { Award, Book, BookOpen, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -201,7 +214,7 @@ const LessonPage = () => {
           </DialogHeader>
           
           <div className="flex flex-col items-center py-4">
-            <Monster size="sm" animated={isCorrect !== true} />
+            <Avatar /> {/* Replace Monster with Avatar */}
             
             <Card className="w-full mt-4">
               <CardHeader>
