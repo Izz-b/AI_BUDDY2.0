@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Chat from "./pages/Chat";
 import LessonPage from "./pages/LessonPage";
 import ParentPortal from "./pages/ParentPortal";
 import NotFound from "./pages/NotFound";
@@ -31,6 +32,7 @@ const App = () => (
           </Route>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/lessons/:subjectId" element={<LessonPage />} />
             <Route path="/parent-portal" element={<ParentPortal />} />
           </Route>

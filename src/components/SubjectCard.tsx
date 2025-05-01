@@ -95,7 +95,7 @@ const SubjectCard = ({
           <span className="text-sm font-medium">Progress</span>
           <span className="text-sm font-medium">{progress}%</span>
         </div>
-        <Progress value={progress} className="h-2" indicatorClassName={getProgressColor()} />
+        <Progress value={progress} className={cn("h-2", getProgressColor())} />
         <p className="text-sm text-gray-500 mt-2">{completed} of {lessons} lessons completed</p>
       </CardContent>
       <CardFooter>

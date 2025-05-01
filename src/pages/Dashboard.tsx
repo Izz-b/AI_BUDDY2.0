@@ -1,12 +1,17 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SubjectCard from "../components/SubjectCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Award, BookOpen, Clock, User } from "lucide-react";
+import { Award, BookOpen, Clock, User, Map } from "lucide-react";
+import ConversationPanel from "../components/ConversationPanel";
+import FeatureCard from "../components/FeatureCard";
+import Avatar from "../components/Avatar";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("learn");
+  const navigate = useNavigate();
   
   const subjects = [
     {
@@ -36,7 +41,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <div>
+    <div className="relative">
+      {/* Avatar character */}
+      <Avatar position="right" size="md" />
+      
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">Hello, Alex!</h1>
@@ -46,6 +54,36 @@ const Dashboard = () => {
           <Award className="h-5 w-5 text-amber-500" />
           <span className="font-medium">250 points</span>
         </div>
+      </div>
+
+      {/* Conversation Panel */}
+      <div className="mb-8">
+        <ConversationPanel />
+      </div>
+
+      {/* Feature Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <FeatureCard
+          icon={<Award className="h-6 w-6 text-amber-500" />}
+          title="Badges & Achievements"
+          description="Collect awards for your progress"
+          bgColor="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-100"
+          onClick={() => setActiveTab("rewards")}
+        />
+        <FeatureCard
+          icon={<Map className="h-6 w-6 text-green-500" />}
+          title="Learning Roadmap"
+          description="See your journey and upcoming lessons"
+          bgColor="bg-gradient-to-br from-green-50 to-teal-50 border-green-100"
+          onClick={() => setActiveTab("progress")}
+        />
+        <FeatureCard
+          icon={<User className="h-6 w-6 text-blue-500" />}
+          title="Parent Portal"
+          description="Insights for parents and guardians"
+          bgColor="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-100"
+          onClick={() => navigate('/parent-portal')}
+        />
       </div>
 
       <Tabs defaultValue="learn" value={activeTab} onValueChange={setActiveTab} className="mb-6">
